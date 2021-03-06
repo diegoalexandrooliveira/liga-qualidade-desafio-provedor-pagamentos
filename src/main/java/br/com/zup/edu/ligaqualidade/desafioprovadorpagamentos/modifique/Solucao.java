@@ -1,6 +1,8 @@
 package br.com.zup.edu.ligaqualidade.desafioprovadorpagamentos.modifique;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Solucao {
@@ -32,10 +34,23 @@ public class Solucao {
 	 * É esperado que o retorno respeite a ordem de recebimento
 	 */
 	public static List<String[]> executa(List<String> infoTransacoes, List<String> infoAdiantamentos) {
-		
-		return List.of(new String[][] { 
-					 {"pago","200","194","04/03/2021"} 					 
-					}); 
+
+		var resultados = new ArrayList<String[]>();
+
+		Debito debito = new Debito();
+
+		infoTransacoes
+				.forEach(transacao -> {
+					List<String> recebivel = debito.pagar(Arrays.asList(transacao.split(",")));
+					resultados.add(recebivel.toArray(new String[0]));
+				});
+
+
+//		return List.of(new String[][] {
+//					 {"pago","200","194","04/03/2021"}
+//					});
+
+		return resultados;
 	}
 
 }
