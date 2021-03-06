@@ -21,7 +21,6 @@ public class Debito implements Pagamento {
         String dataTransacao = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(LocalDate.now());
         retorno[3] = dataTransacao;
 
-
         return retorno;
     }
 

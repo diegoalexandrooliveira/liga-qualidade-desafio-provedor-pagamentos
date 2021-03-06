@@ -35,7 +35,7 @@ public class Solucao {
         return infoTransacoes
                 .stream()
                 .map(transacao -> Arrays.asList(transacao.split(",")))
-                .map(transacaoSeparada -> metodoPagamento(transacaoSeparada.get(1)).pagar(transacaoSeparada))
+                .map(transacao -> metodoPagamento(transacao.get(1)).pagar(transacao))
                 .collect(Collectors.toList());
     }
 
