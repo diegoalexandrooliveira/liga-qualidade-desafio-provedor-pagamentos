@@ -12,7 +12,7 @@ public class Credito implements Pagamento {
     public String[] pagar(List<String> informacoes) {
         var retorno = new String[4];
 
-        retorno[0] = "aguardando_liberacao_fundos";
+        retorno[0] = "aguardando_pagamento";
 
         retorno[1] = informacoes.get(0);
 
