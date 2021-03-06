@@ -6,27 +6,27 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class Debito implements Pagamento {
+public class Credito implements Pagamento {
 
     @Override
     public String[] pagar(List<String> informacoes) {
         var retorno = new String[4];
 
-        retorno[0] = "pago";
+        retorno[0] = "aguardando_liberacao_fundos";
 
         retorno[1] = informacoes.get(0);
 
-        retorno[2] = aplicaDescontoTresPorcento(new BigDecimal(informacoes.get(0))).setScale(2, RoundingMode.HALF_EVEN).toString();
+        retorno[2] = aplicaDescontoCincoPorcento(new BigDecimal(informacoes.get(0))).setScale(2, RoundingMode.HALF_EVEN).toString();
 
-        String dataTransacao = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(LocalDate.now());
+        LocalDate trintaDiasAFrente = LocalDate.now().plusDays(30);
+        String dataTransacao = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(trintaDiasAFrente);
         retorno[3] = dataTransacao;
-
 
         return retorno;
     }
 
-    private BigDecimal aplicaDescontoTresPorcento(BigDecimal valor) {
-        var percentual = BigDecimal.valueOf(3).divide(BigDecimal.valueOf(100));
+    private BigDecimal aplicaDescontoCincoPorcento(BigDecimal valor) {
+        var percentual = BigDecimal.valueOf(5).divide(BigDecimal.valueOf(100));
         var desconto = percentual.multiply(valor);
         return valor.subtract(desconto);
     }

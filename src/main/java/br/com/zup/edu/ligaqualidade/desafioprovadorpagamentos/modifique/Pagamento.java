@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface Pagamento {
 
-    List<String> pagar(List<String> informacoes);
+    String[] pagar(List<String> informacoes);
 
 }

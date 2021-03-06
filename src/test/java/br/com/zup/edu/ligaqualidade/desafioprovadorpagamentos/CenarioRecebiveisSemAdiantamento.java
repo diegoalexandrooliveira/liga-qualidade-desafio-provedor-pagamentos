@@ -1,5 +1,11 @@
 package br.com.zup.edu.ligaqualidade.desafioprovadorpagamentos;
 
+import br.com.zup.edu.ligaqualidade.desafioprovadorpagamentos.modifique.Solucao;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
@@ -8,14 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import br.com.zup.edu.ligaqualidade.desafioprovadorpagamentos.modifique.Solucao;
-
-public class CenarioRecebiveisSemAdiantamento {
+class CenarioRecebiveisSemAdiantamento {
 
 	@ParameterizedTest
 	@MethodSource("geradorDeTransacoesSemAdiantamento")
@@ -65,14 +64,14 @@ public class CenarioRecebiveisSemAdiantamento {
 						)),
 				Arguments.of(
 						List.of(new DadosTesteTransacao("100", "CREDITO",1)),
-						List.of(new DadosEsperadosRetorno("aguardando_pagamento", "100", "95",
+						List.of(new DadosEsperadosRetorno("aguardando_liberacao_fundos", "100", "95",
 								hoje.plusDays(30).format(padraoFormatacao))
 
 						)),
 				Arguments.of(
 						List.of(new DadosTesteTransacao("100", "CREDITO",1),
 								new DadosTesteTransacao("100", "DEBITO",2)),
-						List.of(new DadosEsperadosRetorno("aguardando_pagamento", "100", "95",hoje.plusDays(30).format(padraoFormatacao)),
+						List.of(new DadosEsperadosRetorno("aguardando_liberacao_fundos", "100", "95",hoje.plusDays(30).format(padraoFormatacao)),
 								new DadosEsperadosRetorno("pago", "100", "97",hoje.format(padraoFormatacao))
 
 						))				
